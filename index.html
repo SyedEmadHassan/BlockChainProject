@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusGear | Equipment lending</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><a class="brand" href="/">Campus<span>Gear</span></a><span class="network" id="network">Not connected</span></header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">THE CAMPUS EQUIPMENT DESK</p>
+
+      <button id="connect">Connect MetaMask</button>
+      <p id="wallet" class="muted">Connect your wallet to view equipment.</p>
+    </section>
+    <p id="feedback" role="status" aria-live="polite">Connect MetaMask to load equipment from the configured contract.</p>
+    <p id="transaction" class="transaction"></p>
+    <section class="stats" aria-label="Equipment overview">
+      <div><strong id="total">—</strong><span>Total items</span></div>
+      <div><strong id="available">—</strong><span>Available</span></div>
+      <div><strong id="mine">—</strong><span>My active loans</span></div>
+    </section>
+    <section id="admin-panel" class="panel" hidden>
+      <h2>Administrator desk</h2>
+      <p>Add each physical item separately, for example “Arduino Kit 01”. Confirm returns only after inspecting the item.</p>
+      <form id="add-form"><label for="item-name">Equipment name</label><div class="form-row"><input id="item-name" maxlength="100" required placeholder="Arduino Kit 01"><button id="add" type="submit">Add equipment</button></div></form>
+    </section>
+    <section class="catalogue">
+      <div class="section-heading"><h2>Equipment catalogue</h2><button id="refresh" class="secondary" disabled>Refresh</button></div>
+      <label for="filter">Show</label>
+      <select id="filter"><option value="all">All equipment</option><option value="available">Available</option><option value="mine">My loans</option><option value="returns">Awaiting return confirmation</option></select>
+      <p id="empty" class="muted">Your equipment will appear here after connecting.</p>
+      <div id="items" class="grid"></div>
+    </section>
+    <footer>Physical handovers happen at the equipment desk. Wallet addresses identify accounts, not verified student identities. This is a test-network assignment demo.</footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
