@@ -9,7 +9,6 @@ A Solidity + HTML/CSS/JavaScript DApp for lending campus equipment. Students bor
 - Contract validation for IDs, names, permissions, and state transitions.
 - Events recording each lifecycle action and the previous borrower on return.
 - Wallet connection, account/network change handling, transaction status/hash, role-specific UI, equipment filters and overdue display.
-- Automated tests against an ephemeral Ganache blockchain, including a mined failed transaction.
 
 
 
@@ -17,18 +16,11 @@ A Solidity + HTML/CSS/JavaScript DApp for lending campus equipment. Students bor
 
 | File | Purpose |
 | --- | --- |
-| `contracts/CampusGear.sol` | Smart contract |
-| `frontend/index.html` | Interface |
-| `frontend/style.css` | Styling |
-| `frontend/app.js` | MetaMask/Ethers integration |
-| `frontend/config.js` | Your deployment address and network |
-| `frontend/abi.js` | Generated contract ABI; already supplied |
-| `scripts/compile.mjs` | Compile contract and regenerate ABI |
-| `scripts/serve.mjs` | Local static-file server |
-| `tests/contract.test.mjs` | Automated contract tests |
-| `test-results.txt` | Actual automated test run output |
-| `MANUAL_TESTS.md` | Testnet/Remix testing worksheet |
-| `DEPLOYMENT.md` | Deployment details to fill in |
+| `CampusGear.sol` | Smart contract |
+| `index.html` | Interface |
+| `style.css` | Styling |
+| `app.js` | MetaMask/Ethers integration |
+| `abi.js` | Generated contract ABI;|
 
 ## 1. Install and check locally
 
@@ -55,12 +47,11 @@ Dependencies are version-pinned and a lockfile is included. `npm test` creates a
 1. Open https://remix.ethereum.org/ in the browser with MetaMask.
 2. Create `CampusGear.sol` in Remix and paste `contracts/CampusGear.sol` into it.
 3. Open Solidity Compiler and select **0.8.24**.
-4. In compiler advanced settings, select **Paris** as EVM version and enable optimization with **200 runs**, matching the supplied compile script.
-5. Compile and capture the required compilation screenshot.
-6. Open **Deploy & Run Transactions**. Choose **Browser Extension → MetaMask** (older versions call this **Injected Provider - MetaMask**).
-7. Approve connection, check that the network is Local Ganache (chain ID **1337**) and the account is A, and select `CampusGear` as the contract. Leave Value at **0**. There are no constructor arguments.
-8. Click **Deploy**, approve in MetaMask, and wait for confirmation.
-9. Copy the deployed contract address from Remix. Capture the deployment screenshot and fill in `DEPLOYMENT.md`.
+4. Compile.
+5. Open **Deploy & Run Transactions**. Choose **Browser Extension → MetaMask** (older versions call this **Injected Provider - MetaMask**).
+6. Approve connection, check that the network is Local Ganache (chain ID **1337**) and the account is the one used for Administrator, and select `CampusGear` as the contract. Leave Value at **0**. There are no constructor arguments.
+7. Click **Deploy**, approve in MetaMask, and wait for confirmation.
+8. Copy the deployed contract address from Remix.
 
 
 
@@ -87,17 +78,7 @@ Open **http://localhost:8080** in your MetaMask-enabled browser. Do not double-c
 
 Click **Connect MetaMask**. When connected as A, register `Arduino Kit 01` and `Camera 01`. Every write requires wallet approval and confirmation. Read-only refreshes do not submit transactions.
 
-## 5. Demonstrate the complete flow
 
-1. As A, add an item.
-2. Switch MetaMask to B. The page reloads to avoid retaining the old signer. Click Connect again. Ensure B is the selected account for this site in MetaMask.
-3. Borrow the item. The UI shows B's address and a seven-day deadline.
-4. Switch to C: the item remains unavailable.
-5. Switch to B and request return. The item stays unavailable while awaiting inspection.
-6. Switch to A and confirm physical return. The item becomes available and its active borrower/deadline are cleared.
-7. Switch to C and borrow it again.
-
-Click Refresh to retrieve changes made by another account or in Remix. If switching accounts during a pending transaction reloads the page, check the hash in MetaMask's Activity before retrying.
 
 
 
