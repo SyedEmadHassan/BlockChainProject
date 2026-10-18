@@ -1,0 +1,13 @@
+{
+  "name": "campusgear",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "node scripts/compile.mjs",
+    "test": "node --test tests/contract.test.mjs",
+    "start": "node scripts/serve.mjs"
+  },
+  "dependencies": { "ethers": "6.13.5" },
+  "devDependencies": { "ganache": "7.9.2", "solc": "0.8.24" }
+}
